@@ -20,7 +20,22 @@ function creatingSnake(){
     }
 }
 
+document.addEventListener("keydown", update); //captura o evento keydown (apertar o botao) e chama a função update
+function update(event){
+    if(event.keyCode == 37 && direction != "right") direction = "left"; //37 == seta direita
+    if(event.keyCode == 38 && direction != "down") direction = "up";    //38 == seta baixo
+    if(event.keyCode == 39 && direction != "left") direction = "right"; //39 == seta esquerda 
+    if(event.keyCode == 40 && direction != "up") direction = "down";    //40 == seta cima
+}
+
 function start(){
+    //snake[0] é o índice da cabeça da cobra
+    //se a posição do índice da cabeça no eixo X for maior que a última coluna à direita do canvas e a direção manter-se a direita, é atribuído o valor 0, p/ que o elemento saia no ínicio da linha, na posição 0 do canvas
+    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+    if(snake[0].x < 0 * box && direction == "left") snake[0].x = 16 * box;
+    //atenção ao fato de que o canvas é construído de cima para baixo (eixo y)
+    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+    if(snake[0].y < 0 * box && direction == "up") snake[0].y = 16 * box;
     creatingBG();
     creatingSnake();
 
@@ -43,4 +58,5 @@ function start(){
 }
 
 let game = setInterval(start, 100); //reiniciando o jogo (start) a cada 100 milissegundos, impedindo que ele trave
+
 
