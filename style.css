@@ -1,0 +1,16 @@
+body{
+    height: 95vh; /*view height*/
+    width: 95; /*view width*/
+    display: flex;
+    justify-content: center; /*alinhamento horizontal*/
+    align-items: center; /*alinhamento vertical*/
+    flex-direction: column;
+    color: lightgreen;
+    text-transform: uppercase;
+}
+
+h1{
+    padding: 12px 25px;
+    border: 1px solid lightgreen;
+    border-radius: 50%;
+}
