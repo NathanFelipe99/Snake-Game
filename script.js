@@ -7,6 +7,13 @@ snake[0] = {
     y: 8 * box
 }
 let direction = "right";
+let food = {
+    //lógica de geração da comida da cobrinha de forma aleatória
+    //Math.floor é a função chão, retorna o valor chão (int) de um float
+    //Math.random retorna um número aleatório até 1
+    x: Math.floor(Math.random() * 15 + 1) * box,
+    y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 function creatingBG(){
     context.fillStyle = "lightgreen"; 
@@ -18,6 +25,11 @@ function creatingSnake(){
         context.fillStyle = "green";
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
+}
+
+function drawFood(){
+    context.fillStyle = "red"; //cor da comida
+    context.fillRect(food.x, food.y, box, box); 
 }
 
 document.addEventListener("keydown", update); //captura o evento keydown (apertar o botao) e chama a função update
@@ -36,8 +48,10 @@ function start(){
     //atenção ao fato de que o canvas é construído de cima para baixo (eixo y)
     if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
     if(snake[0].y < 0 * box && direction == "up") snake[0].y = 16 * box;
+
     creatingBG();
     creatingSnake();
+    drawFood();
 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
